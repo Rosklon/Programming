@@ -24,7 +24,7 @@ int main()
             int i, n = 0, m = 0, j = 0;
             ifstream F1;
             ofstream F2;
-            F2.open("mass.txt", ios::out | ios::in);
+            F2.open("mass.txt", ios::out);
             F1.open("randord.txt", ios::in);
             while (!F1.eof())
             {
@@ -35,6 +35,7 @@ int main()
             F1.close();
             cout << "Количество отрицательных чисел: " << n << endl;//Вывод количества чисел в массиве. 
             int* a = new int[n];//Создание массива. 
+            F1.open("randord.txt", ios::in);
             while (!F1.eof())//Цикл подсчета количества чисел удовлетворяющих условию. 
             {
                 F1 >> m;
