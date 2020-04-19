@@ -8,7 +8,6 @@
 using namespace std;
 
 void creat_massive(int* A, int N); //Создание массива cо случайными элементами в промежутке от а до b.
- //Добавление k перед элементом массива.
 void sort(int a[], int n); //Сортировка прямого выбора.
 
 int main()
@@ -65,7 +64,7 @@ int main()
             int kol = 0;
             int k;
             
-            cout << "Введите число K для добавления его перед отрицальным элементом массива: ";
+            cout << "Введите число K для добавления после отрицального элемента массива: ";
             cin >> k;
             for (int i = 0; i < N; i++)
             {
@@ -75,21 +74,19 @@ int main()
                 }
             }
             
-            N =N + kol;
+            N = N + kol;
             int* AwK = new int[N];
             int j = 0;
 
             for (int i = 0; i < N; i++)
             {
-                
-                if (A[j] < 0)
+                AwK[i] = A[j];
+                if (AwK[i] < 0)
                 {
-                    AwK[i] = k;
                     i++;
-                    AwK[i] = A[j];
+                    AwK[i] = k;
                 }
-                else
-                    AwK[i] = A[j];
+                
                 j++;
             }
             for (int i = 0; i < N ; i++)
