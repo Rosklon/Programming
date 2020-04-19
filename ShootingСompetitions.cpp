@@ -14,10 +14,22 @@ int main()
     setlocale(LC_ALL, "ru");
     srand(unsigned(time(NULL)));
     int n, m;
-    cout << "Введите количество стрелков: ";
+    cout << "  Введите количество стрелков: ";
     cin >> m;
-    cout << "Введите количество выстрелов: ";
+    while (m<0)
+    {
+        cout << "  Вы ввели отрицательное число. Введите положительное число." << endl;
+        cout << "  Введите количество стрелков: ";
+        cin >> m;
+    }
+    cout << "  Введите количество выстрелов: ";
     cin >> n;
+    while (n < 0)
+    {
+        cout << "  Вы ввели отрицательное число. Введите положительное число." << endl;
+        cout << "  Введите количество стрелков: ";
+        cin >> n;
+    }
     int** a = new int* [m];
     for (int i = 0; i < m; i++)
         a[i] = new int[n];
@@ -32,13 +44,13 @@ int main()
 
 void table(int** a, int m, int n)
 {
-    cout << "Выстрелы:";
+    cout << "  Выстрелы:";
     for (int i = 1; i <= n; i++)
         cout << "  " << i;
     cout << endl;
     for (int i = 0; i < m; i++)
     {
-        cout << "Стрелок " << i + 1;
+        cout << "  Стрелок " << i + 1;
         for (int j = 0; j < n; j++)
             cout << "  " << a[i][j];
         cout << endl;
@@ -81,7 +93,7 @@ void winner(int** a, int* b, int m, int n)
     }
     if (count > 1)
     {
-        cout << "Победитель: " << endl;
+        cout << "  Победитель: " << endl;
         for (int i = 0; i < m; i++)
         {
             if (b[i] == max)
@@ -110,13 +122,13 @@ void winner(int** a, int* b, int m, int n)
         {
             if (b[i] == max)
             {
-                cout << "            Cтрелок " << i+1;
+                cout << "              Cтрелок " << i+1 << endl;
             }
         }
     }
     else 
     {
-        cout << "Победитель: Cтрелок " << k;
+        cout << "  Победитель: "<< endl<<"              Cтрелок "<< k;
     }
     cout << endl;
 }
