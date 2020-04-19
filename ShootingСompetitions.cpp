@@ -25,7 +25,7 @@ int main()
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
             /**cin >> a[i][j];**/
-            
+            a[i][j]=rand() % 11;
     cout << endl;
     table(a, m, n);
     int* b = new int [m];
@@ -116,5 +116,6 @@ void winner(int** a, int* b, int m, int n)
         cout << "Победитель: Cтрелок " << k;
     }
 }
+
 
 
