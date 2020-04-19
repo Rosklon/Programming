@@ -1,5 +1,4 @@
-﻿// ShootingСompetitions.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿
 
 #include <iostream>
 #include <ctime>
@@ -24,7 +23,6 @@ int main()
         a[i] = new int[n];
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
-            /**cin >> a[i][j];**/
             a[i][j]=rand() % 11;
     cout << endl;
     table(a, m, n);
@@ -61,10 +59,8 @@ void winner(int** a, int* b, int m, int n)
                 mi = a[i][j];
             }
         }
-        b[i] = mi;
-        /**cout << "Лучший результат cтрелка " << i + 1 << ": " << b[i] << endl;**/
+        b[i] = mi;    
     }
-    cout << endl << endl;
     int count = 0;
     for (int i = 0; i < m; i++)
     {
@@ -85,36 +81,44 @@ void winner(int** a, int* b, int m, int n)
     }
     if (count > 1)
     {
-        cout << "Победитель: ";
-        int p;
+        cout << "Победитель: " << endl;
         for (int i = 0; i < m; i++)
         {
             if (b[i] == max)
             {
-                p = 0;
+                
                 for (int j = 0; j < n; j++)
                 {
                     p = p + a[i][j];
                 }
-                if(p>l)
-                { 
-                    k = i+1;
-                    cout << "Cтрелок " << k ;
-                }
-                else if (p == l)
-                {
-                    k = i + 1;
-                    cout << ", Cтрелок " << k ;
-                }
-                l = p;
+                b[i] = p;
+                p = 0;
             }
+
+        }
+        max = 0;
+        for (int i = 0; i < m; i++)
+        {
             
+            if (b[i] > max)
+            {
+                max = b[i];
+            }
+
+        }
+        for (int i = 0; i < m; i++)
+        {
+            if (b[i] == max)
+            {
+                cout << "            Cтрелок " << i+1;
+            }
         }
     }
     else 
     {
         cout << "Победитель: Cтрелок " << k;
     }
+    cout << endl;
 }
 
 
