@@ -11,12 +11,23 @@ void red_zone(int** a, int n, int m, int x, int& ind, int& jnd);//Нахожде
 int main()
 {
 	setlocale(LC_ALL, "ru");
-	int n, z, x, indi, indj, ind1i, ind1j;
+	int n, z, x, gzi, gzj, rzi, rzj;
 	cout << "Введите размер квадратной матрицы: " << endl;
 	cin >> n; 
 	cout << endl;
-	cout << "Введите интервал [a,b]: " << endl;
-	cin >> z >> x;
+	cout << "Необходимо ввести диапазон элементов матрицы [a,b]." << endl;
+	cout << "Введите a: ";
+	cin >> z;
+	cout << "Введите b: ";
+	cin >> x;
+	while (z >x || z == x)
+	{
+		if (z > x || z == x) cout << "Повторите ввод a и b. Необходимо чтобы выполнялись условия: a меньше b и a не равно d." << endl;
+		cout << "Введите a: ";
+		cin >>z;
+		cout << "Введите b: ";
+		cin >> x;
+	}
 	int** a = new int* [n];
 	for (int i = 0; i < n; i++)
 	{
@@ -32,17 +43,12 @@ int main()
 	}
 	
 	matr_out(a, n, n);
-	green_zone(a, n, n, z, indi, indj);
-	red_zone(a, n, n, x, ind1i, ind1j);
-	a[indi][indj] = a[indi][indj] + a[ind1i][ind1j];//Сумма максимального элемента и минимального элемента
-	a[ind1i][ind1j] = a[indi][indj] - a[ind1i][ind1j];//Замена положительного элемента на отрицательный
-	a[indi][indj] = a[indi][indj] - a[ind1i][ind1j];//Замена отрицательного элемента на положительный
+	green_zone(a, n, n, z, gzi, gzj);
+	red_zone(a, n, n, x, rzi, rzj);
+	a[gzi][gzj] = a[gzi][gzj] + a[rzi][rzj];//Сумма максимального элемента и минимального элемента
+	a[rzi][rzj] = a[gzi][gzj] - a[rzi][rzj];//Замена положительного элемента на отрицательный
+	a[gzi][gzj] = a[gzi][gzj] - a[rzi][rzj];//Замена отрицательного элемента на положительный
 	matr_out(a, n, n);
-	for (int i = 0; i < n; i++)
-	{
-		delete[] a[i];
-	}
-	delete[] a;
 	return 0;
 }
 
